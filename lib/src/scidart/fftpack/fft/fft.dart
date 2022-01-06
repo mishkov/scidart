@@ -93,12 +93,9 @@ ArrayComplex _cooleyTukey(ArrayComplex x) {
   } else {
     var evens = ArrayComplex.empty();
     var odds = ArrayComplex.empty();
-    for (var i = 0; i < n; i++) {
-      if (isEven(i)) {
-        evens.add(x[i]);
-      } else {
-        odds.add(x[i]);
-      }
+    for (var i = 0; i < n - 1; i += 2) {
+      evens.add(x[i]);
+      odds.add(x[i + 1]);
     }
     var even = _cooleyTukey(evens);
     var odd = _cooleyTukey(odds);
