@@ -4,7 +4,7 @@ version: 0.0.2-dev.6
 homepage: https://scidart.org/
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dev_dependencies:
   pedantic: ^1.11.1
