@@ -207,20 +207,19 @@ ArrayComplex _cooleyTukeyImproved(ArrayComplex x) {
   } else {
     var evens = ArrayComplex.empty();
     var odds = ArrayComplex.empty();
-    for (var i = 0; i < n; i++) {
-      if (isEven(i)) {
-        evens.add(x[i]);
-      } else {
-        odds.add(x[i]);
-      }
+    for (var i = 0; i < n - 1; i += 2) {
+      evens.add(x[i]);
+      odds.add(x[i + 1]);
     }
     var even = _cooleyTukey(evens);
     var odd = _cooleyTukey(odds);
 
     var result = ArrayComplex.fixed(n);
+    const minusTwoPi = -2 * pi;
     var halfn = n ~/ 2;
+    final convertedN = n.toDouble();
     for (var k = 0; k < halfn; k++) {
-      var exponent = Complex.ri(0.0, -2 * pi * k.toDouble() / n.toDouble());
+      var exponent = Complex.ri(0.0, minusTwoPi * k.toDouble() / convertedN);
       var a = complexExp(exponent) * odd[k];
       result[k] = even[k] + a;
       result[k + halfn] = even[k] - a;
